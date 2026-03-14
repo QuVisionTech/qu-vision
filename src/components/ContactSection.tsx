@@ -7,9 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { fadeIn } from "@/lib/animations";
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -39,7 +36,7 @@ const ContactSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
+          variants={fadeIn}
           className="text-center mb-12"
         >
           <span className="text-sm font-semibold tracking-widest uppercase text-secondary mb-4 block">
@@ -70,7 +67,7 @@ const ContactSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={fadeInUp}
+            variants={fadeIn}
             onSubmit={handleSubmit}
             className="space-y-6 card-glow-primary rounded-xl p-8 md:p-10"
           >

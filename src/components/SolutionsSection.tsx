@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Shield, Cpu, BrainCircuit, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fadeInUp } from "@/lib/animations";
+
+const solutions = [
   {
     icon: Shield,
     title: "Quantum Cryptography",
@@ -29,7 +31,9 @@ import { fadeInUp } from "@/lib/animations";
     accentColor: "text-secondary",
     badgeColor: "bg-secondary/10 text-secondary",
   },
-const solutions = [
+];
+
+const SolutionsSection = () => {
   return (
     <section id="solutions" className="py-24 section-alt">
       <div className="container max-w-6xl">
