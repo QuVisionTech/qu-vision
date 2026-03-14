@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FileText, BookOpen, ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fadeInUp } from "@/lib/animations";
+import DownloadFormDialog from "@/components/DownloadFormDialog";
 
 const resources = [
   {
@@ -55,6 +57,11 @@ const categoryColor: Record<string, string> = {
 };
 
 const KnowledgeHub = () => {
+  const [downloadDialog, setDownloadDialog] = useState<{ open: boolean; title: string }>({
+    open: false,
+    title: "",
+  });
+
   return (
     <section id="knowledge" className="py-24">
       <div className="container max-w-6xl">
@@ -114,6 +121,11 @@ const KnowledgeHub = () => {
                 <Button
                   variant="ghost"
                   className="p-0 text-sm text-secondary hover:bg-transparent hover:gap-3 gap-2 transition-all"
+                  onClick={() => {
+                    if (resource.type === "whitepaper") {
+                      setDownloadDialog({ open: true, title: resource.title });
+                    }
+                  }}
                 >
                   {resource.type === "whitepaper" ? "Download PDF" : "Read Article"}
                   {resource.type === "whitepaper" ? (
@@ -127,6 +139,12 @@ const KnowledgeHub = () => {
           ))}
         </div>
       </div>
+
+      <DownloadFormDialog
+        open={downloadDialog.open}
+        onOpenChange={(open) => setDownloadDialog({ ...downloadDialog, open })}
+        resourceTitle={downloadDialog.title}
+      />
     </section>
   );
 };
