@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { Shield, Cpu, BrainCircuit, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const solutions = [
+import { fadeInUp } from "@/lib/animations";
   {
     icon: Shield,
     title: "Quantum Cryptography",
