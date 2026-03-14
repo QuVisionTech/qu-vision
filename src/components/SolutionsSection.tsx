@@ -29,18 +29,7 @@ import { fadeInUp } from "@/lib/animations";
     accentColor: "text-secondary",
     badgeColor: "bg-secondary/10 text-secondary",
   },
-];
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.5, ease: "easeOut" },
-  }),
-};
-
-const SolutionsSection = () => {
+const solutions = [
   return (
     <section id="solutions" className="py-24 section-alt">
       <div className="container max-w-6xl">

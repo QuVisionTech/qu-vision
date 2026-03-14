@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Building2, HeartPulse, ShieldCheck, Cpu, Zap } from "lucide-react";
+import { fadeInUp } from "@/lib/animations";
 
 const industries = [
   { icon: Building2, name: "Finance", description: "Quantum risk modeling, portfolio optimization, and post-quantum security for financial infrastructure." },

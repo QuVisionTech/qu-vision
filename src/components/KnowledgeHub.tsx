@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FileText, BookOpen, ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { fadeInUp } from "@/lib/animations";
 
 const resources = [
   {
