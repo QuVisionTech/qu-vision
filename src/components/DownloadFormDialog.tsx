@@ -1,20 +1,26 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Download, CheckCircle } from "lucide-react";
+import ReCAPTCHA from "react-google-recaptcha";
+
+const CAPTCHA_SITE_KEY = import.meta.env.VITE_CAPTCHA_SITE_KEY || "";
 
 interface DownloadFormDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   resourceTitle: string;
+  downloadUrl?: string;
 }
 
-const DownloadFormDialog = ({ open, onOpenChange, resourceTitle }: DownloadFormDialogProps) => {
+const DownloadFormDialog = ({ open, onOpenChange, resourceTitle, downloadUrl }: DownloadFormDialogProps) => {
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,6 +35,10 @@ const DownloadFormDialog = ({ open, onOpenChange, resourceTitle }: DownloadFormD
       toast({ title: "Please fill in all required fields", variant: "destructive" });
       return;
     }
+    if (!captchaToken && CAPTCHA_SITE_KEY) {
+      toast({ title: "Please complete the CAPTCHA", variant: "destructive" });
+      return;
+    }
     setSubmitted(true);
     toast({ title: "Access granted!", description: "Your download link is ready." });
   };
@@ -36,6 +46,8 @@ const DownloadFormDialog = ({ open, onOpenChange, resourceTitle }: DownloadFormD
   const handleClose = (val: boolean) => {
     if (!val) {
       setSubmitted(false);
+      setCaptchaToken(null);
+      recaptchaRef.current?.reset();
       setFormData({ name: "", email: "", phone: "", industry: "", needs: "" });
     }
     onOpenChange(val);
@@ -53,7 +65,16 @@ const DownloadFormDialog = ({ open, onOpenChange, resourceTitle }: DownloadFormD
           <div className="text-center py-6 space-y-4">
             <CheckCircle className="w-12 h-12 text-secondary mx-auto" />
             <p className="text-sm text-muted-foreground">Thank you! Your download is ready.</p>
-            <Button variant="hero" className="w-full" onClick={() => handleClose(false)}>
+            <Button
+              variant="hero"
+              className="w-full"
+              onClick={() => {
+                if (downloadUrl) {
+                  window.open(downloadUrl, "_blank");
+                }
+                handleClose(false);
+              }}
+            >
               <Download className="w-4 h-4" />
               Download PDF
             </Button>
@@ -114,6 +135,18 @@ const DownloadFormDialog = ({ open, onOpenChange, resourceTitle }: DownloadFormD
                 maxLength={500}
               />
             </div>
+
+            {CAPTCHA_SITE_KEY && (
+              <div className="flex justify-center">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={CAPTCHA_SITE_KEY}
+                  onChange={(token) => setCaptchaToken(token)}
+                  onExpired={() => setCaptchaToken(null)}
+                />
+              </div>
+            )}
+
             <Button variant="hero" type="submit" className="w-full">
               Submit & Get Download Link
             </Button>

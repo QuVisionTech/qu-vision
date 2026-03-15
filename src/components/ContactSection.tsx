@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,10 +7,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { fadeIn } from "@/lib/animations";
+import ReCAPTCHA from "react-google-recaptcha";
+
+const CAPTCHA_SITE_KEY = import.meta.env.VITE_CAPTCHA_SITE_KEY || "";
 
 const ContactSection = () => {
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,6 +28,10 @@ const ContactSection = () => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({ title: "Please fill in all required fields", variant: "destructive" });
+      return;
+    }
+    if (!captchaToken && CAPTCHA_SITE_KEY) {
+      toast({ title: "Please complete the CAPTCHA", variant: "destructive" });
       return;
     }
     setSubmitted(true);
@@ -131,6 +140,17 @@ const ContactSection = () => {
                 maxLength={1000}
               />
             </div>
+
+            {CAPTCHA_SITE_KEY && (
+              <div className="flex justify-center">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={CAPTCHA_SITE_KEY}
+                  onChange={(token) => setCaptchaToken(token)}
+                  onExpired={() => setCaptchaToken(null)}
+                />
+              </div>
+            )}
 
             <Button variant="hero" size="lg" type="submit" className="w-full">
               <Send className="w-4 h-4" />
