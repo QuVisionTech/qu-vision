@@ -17,6 +17,7 @@ const BlogRLDecoders = () => {
             </Button>
 
             <div className="flex items-center gap-3 mb-6">
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Whitepaper</span>
               <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-secondary/10 text-secondary">Error Correction</span>
               <span className="flex items-center gap-1 text-xs text-muted-foreground"><Clock className="w-3 h-3" /> 35 min read</span>
             </div>
