@@ -113,7 +113,10 @@ const KnowledgeHub = () => {
               custom={i + 1}
               className="group card-glow-primary rounded-xl p-6 hover:shadow-lg transition-all duration-300 flex flex-col"
             >
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-2 flex-wrap mb-4">
+                <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${tagColor[resource.tag]}`}>
+                  {resource.tag}
+                </span>
                 <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${categoryColor[resource.category]}`}>
                   {resource.category}
                 </span>
