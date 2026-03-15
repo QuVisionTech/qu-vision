@@ -8,6 +8,7 @@ import DownloadFormDialog from "@/components/DownloadFormDialog";
 const resources = [
   {
     type: "whitepaper",
+    tag: "Whitepaper",
     title: "Agentic Middleware for Quantum-Accelerated R&D",
     description: "How QuVision-MCP (QuV-MCP) bridges the 'Quantum Chasm' for enterprise research — from intent to hardware-specific circuits.",
     category: "Quantum Computing",
@@ -17,6 +18,7 @@ const resources = [
   },
   {
     type: "whitepaper",
+    tag: "Whitepaper",
     title: "Agentic RL-Decoders for Fault-Tolerant Quantum Computing",
     description: "Autonomous error mitigation and neural decoding using QuVision-MCP — integrating deep RL decoders into the QEC cycle.",
     category: "Error Correction",
@@ -26,6 +28,7 @@ const resources = [
   },
   {
     type: "blog",
+    tag: "Research",
     title: "Post-Quantum Cryptography Migration Guide",
     description: "A comprehensive framework for transitioning enterprise systems to quantum-resistant cryptographic standards before Q-Day.",
     category: "Cryptography",
@@ -33,6 +36,7 @@ const resources = [
   },
   {
     type: "blog",
+    tag: "Research",
     title: "Surface Codes and the Road to Fault Tolerance",
     description: "How topological quantum error correction is paving the way for reliable quantum computation at scale.",
     category: "Error Correction",
@@ -40,6 +44,7 @@ const resources = [
   },
   {
     type: "blog",
+    tag: "Insights",
     title: "Quantum ML for Financial Risk Modeling",
     description: "Exploring variational quantum algorithms for portfolio optimization and Monte Carlo simulations in quantitative finance.",
     category: "Machine Learning",
@@ -47,6 +52,7 @@ const resources = [
   },
   {
     type: "blog",
+    tag: "Insights",
     title: "Hybrid Quantum-Classical Architectures",
     description: "Why the near-term future of quantum computing lies in intelligent integration with classical systems.",
     category: "Machine Learning",
