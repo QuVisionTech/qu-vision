@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Knowledge from "./pages/Knowledge.tsx";
+import BlogAgenticMiddleware from "./pages/BlogAgenticMiddleware.tsx";
+import BlogRLDecoders from "./pages/BlogRLDecoders.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -18,6 +20,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/knowledge" element={<Knowledge />} />
+          <Route path="/blog/agentic-middleware-quv-mcp" element={<BlogAgenticMiddleware />} />
+          <Route path="/blog/rl-decoders-fault-tolerant-qc" element={<BlogRLDecoders />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

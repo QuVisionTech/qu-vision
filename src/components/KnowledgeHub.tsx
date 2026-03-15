@@ -8,6 +8,24 @@ import DownloadFormDialog from "@/components/DownloadFormDialog";
 const resources = [
   {
     type: "whitepaper",
+    title: "Agentic Middleware for Quantum-Accelerated R&D",
+    description: "How QuVision-MCP (QuV-MCP) bridges the 'Quantum Chasm' for enterprise research — from intent to hardware-specific circuits.",
+    category: "Quantum Computing",
+    readTime: "25 min read",
+    blogUrl: "/blog/agentic-middleware-quv-mcp",
+    downloadUrl: "/whitepapers/agentic-middleware-quv-mcp.pdf",
+  },
+  {
+    type: "whitepaper",
+    title: "Agentic RL-Decoders for Fault-Tolerant Quantum Computing",
+    description: "Autonomous error mitigation and neural decoding using QuVision-MCP — integrating deep RL decoders into the QEC cycle.",
+    category: "Error Correction",
+    readTime: "35 min read",
+    blogUrl: "/blog/rl-decoders-fault-tolerant-qc",
+    downloadUrl: "/whitepapers/rl-decoders-fault-tolerant-qc.pdf",
+  },
+  {
+    type: "blog",
     title: "Post-Quantum Cryptography Migration Guide",
     description: "A comprehensive framework for transitioning enterprise systems to quantum-resistant cryptographic standards before Q-Day.",
     category: "Cryptography",
@@ -21,18 +39,11 @@ const resources = [
     readTime: "8 min read",
   },
   {
-    type: "whitepaper",
+    type: "blog",
     title: "Quantum ML for Financial Risk Modeling",
     description: "Exploring variational quantum algorithms for portfolio optimization and Monte Carlo simulations in quantitative finance.",
     category: "Machine Learning",
     readTime: "30 min read",
-  },
-  {
-    type: "blog",
-    title: "Quantum Key Distribution: Beyond Theory",
-    description: "Real-world deployments of QKD networks and what they mean for critical infrastructure security.",
-    category: "Cryptography",
-    readTime: "6 min read",
   },
   {
     type: "blog",
@@ -41,25 +52,20 @@ const resources = [
     category: "Machine Learning",
     readTime: "10 min read",
   },
-  {
-    type: "whitepaper",
-    title: "Quantum Error Correction Benchmarks 2026",
-    description: "Performance analysis of leading QEC codes across superconducting, trapped-ion, and photonic platforms.",
-    category: "Error Correction",
-    readTime: "35 min read",
-  },
 ];
 
 const categoryColor: Record<string, string> = {
+  "Quantum Computing": "bg-accent/10 text-accent",
   Cryptography: "bg-accent/10 text-accent",
   "Error Correction": "bg-secondary/10 text-secondary",
   "Machine Learning": "bg-secondary/10 text-secondary",
 };
 
 const KnowledgeHub = () => {
-  const [downloadDialog, setDownloadDialog] = useState<{ open: boolean; title: string }>({
+  const [downloadDialog, setDownloadDialog] = useState<{ open: boolean; title: string; downloadUrl: string }>({
     open: false,
     title: "",
+    downloadUrl: "",
   });
 
   return (
@@ -117,23 +123,40 @@ const KnowledgeHub = () => {
                 {resource.description}
               </p>
 
-              <div className="flex items-center justify-between">
-                <Button
-                  variant="ghost"
-                  className="p-0 text-sm text-secondary hover:bg-transparent hover:gap-3 gap-2 transition-all"
-                  onClick={() => {
-                    if (resource.type === "whitepaper") {
-                      setDownloadDialog({ open: true, title: resource.title });
-                    }
-                  }}
-                >
-                  {resource.type === "whitepaper" ? "Download PDF" : "Read Article"}
-                  {resource.type === "whitepaper" ? (
-                    <Download className="w-3.5 h-3.5" />
-                  ) : (
+              <div className="flex items-center gap-3">
+                {resource.type === "whitepaper" && (
+                  <>
+                    <Button
+                      variant="ghost"
+                      className="p-0 text-sm text-secondary hover:bg-transparent hover:gap-3 gap-2 transition-all"
+                      onClick={() =>
+                        setDownloadDialog({ open: true, title: resource.title, downloadUrl: resource.downloadUrl || "" })
+                      }
+                    >
+                      Download PDF
+                      <Download className="w-3.5 h-3.5" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      className="p-0 text-sm text-accent hover:bg-transparent hover:gap-3 gap-2 transition-all"
+                      asChild
+                    >
+                      <a href={resource.blogUrl}>
+                        Read Blog
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </a>
+                    </Button>
+                  </>
+                )}
+                {resource.type === "blog" && (
+                  <Button
+                    variant="ghost"
+                    className="p-0 text-sm text-secondary hover:bg-transparent hover:gap-3 gap-2 transition-all"
+                  >
+                    Read Article
                     <ArrowRight className="w-3.5 h-3.5" />
-                  )}
-                </Button>
+                  </Button>
+                )}
               </div>
             </motion.article>
           ))}
@@ -144,6 +167,7 @@ const KnowledgeHub = () => {
         open={downloadDialog.open}
         onOpenChange={(open) => setDownloadDialog({ ...downloadDialog, open })}
         resourceTitle={downloadDialog.title}
+        downloadUrl={downloadDialog.downloadUrl}
       />
     </section>
   );
