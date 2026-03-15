@@ -67,6 +67,12 @@ const categoryColor: Record<string, string> = {
   "Machine Learning": "bg-secondary/10 text-secondary",
 };
 
+const tagColor: Record<string, string> = {
+  Whitepaper: "bg-primary/10 text-primary border border-primary/20",
+  Research: "bg-secondary/10 text-secondary border border-secondary/20",
+  Insights: "bg-accent/10 text-accent border border-accent/20",
+};
+
 const KnowledgeHub = () => {
   const [downloadDialog, setDownloadDialog] = useState<{ open: boolean; title: string; downloadUrl: string }>({
     open: false,
