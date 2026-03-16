@@ -3,10 +3,11 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { label: "Solutions", href: "#solutions" },
-  { label: "Industries", href: "#industries" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Industries", href: "/#industries" },
   { label: "Knowledge Hub", href: "/knowledge" },
-  { label: "Contact", href: "#contact" },
+  { label: "Team", href: "/team" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const Navbar = () => {
@@ -35,7 +36,7 @@ const Navbar = () => {
             </a>
           ))}
           <Button variant="hero" size="sm" asChild>
-            <a href="#contact">Get Started</a>
+            <a href="/#contact">Get Started</a>
           </Button>
         </div>
 
@@ -62,7 +63,7 @@ const Navbar = () => {
               </a>
             ))}
             <Button variant="hero" size="sm" asChild>
-              <a href="#contact" onClick={() => setMobileOpen(false)}>Get Started</a>
+              <a href="/#contact" onClick={() => setMobileOpen(false)}>Get Started</a>
             </Button>
           </div>
         </div>
