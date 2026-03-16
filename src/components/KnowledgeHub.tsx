@@ -73,12 +73,17 @@ const tagColor: Record<string, string> = {
   Insights: "bg-accent/10 text-accent border border-accent/20",
 };
 
+const allTags = ["All", "Whitepaper", "Research", "Insights"];
+
 const KnowledgeHub = () => {
+  const [activeTag, setActiveTag] = useState("All");
   const [downloadDialog, setDownloadDialog] = useState<{ open: boolean; title: string; downloadUrl: string }>({
     open: false,
     title: "",
     downloadUrl: "",
   });
+
+  const filtered = activeTag === "All" ? resources : resources.filter((r) => r.tag === activeTag);
 
   return (
     <section id="knowledge" className="py-24">
@@ -89,7 +94,7 @@ const KnowledgeHub = () => {
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeInUp}
           custom={0}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="text-sm font-semibold tracking-widest uppercase text-secondary mb-4 block">
             Knowledge Hub
@@ -102,8 +107,24 @@ const KnowledgeHub = () => {
           </p>
         </motion.div>
 
+        <div className="flex justify-center gap-2 mb-10 flex-wrap">
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setActiveTag(tag)}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all border ${
+                activeTag === tag
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-card text-muted-foreground border-border hover:border-primary/40 hover:text-primary"
+              }`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {resources.map((resource, i) => (
+          {filtered.map((resource, i) => (
             <motion.article
               key={resource.title}
               initial="hidden"
