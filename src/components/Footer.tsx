@@ -1,5 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { MapPin } from "lucide-react";
+import { MapPin, Linkedin } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const locations = [
   { city: "Atlanta, GA", country: "USA" },
