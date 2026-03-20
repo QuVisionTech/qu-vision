@@ -188,13 +188,16 @@ const KnowledgeHub = () => {
                     </Button>
                   </>
                 )}
-                {resource.type === "blog" && (
+                {resource.type === "blog" && resource.blogUrl && (
                   <Button
                     variant="ghost"
                     className="p-0 text-sm text-secondary hover:bg-transparent hover:gap-3 gap-2 transition-all"
+                    asChild
                   >
-                    Read Article
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <a href={resource.blogUrl}>
+                      Read Article
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
                   </Button>
                 )}
               </div>

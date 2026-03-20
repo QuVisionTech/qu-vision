@@ -35,6 +35,10 @@ const App = () => (
           <Route path="/team" element={<Team />} />
           <Route path="/blog/agentic-middleware-quv-mcp" element={<BlogAgenticMiddleware />} />
           <Route path="/blog/rl-decoders-fault-tolerant-qc" element={<BlogRLDecoders />} />
+          <Route path="/blog/pqc-migration-guide" element={<BlogPQCMigration />} />
+          <Route path="/blog/surface-codes-fault-tolerance" element={<BlogSurfaceCodes />} />
+          <Route path="/blog/quantum-ml-financial-risk" element={<BlogQMLFinance />} />
+          <Route path="/blog/hybrid-quantum-classical" element={<BlogHybridArchitectures />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/cookie-notice" element={<CookieNoticePage />} />
           <Route path="/terms" element={<Terms />} />
