@@ -33,6 +33,7 @@ const resources = [
     description: "A comprehensive framework for transitioning enterprise systems to quantum-resistant cryptographic standards before Q-Day.",
     category: "Cryptography",
     readTime: "25 min read",
+    blogUrl: "/blog/pqc-migration-guide",
   },
   {
     type: "blog",
@@ -41,6 +42,7 @@ const resources = [
     description: "How topological quantum error correction is paving the way for reliable quantum computation at scale.",
     category: "Error Correction",
     readTime: "8 min read",
+    blogUrl: "/blog/surface-codes-fault-tolerance",
   },
   {
     type: "blog",
@@ -49,6 +51,7 @@ const resources = [
     description: "Exploring variational quantum algorithms for portfolio optimization and Monte Carlo simulations in quantitative finance.",
     category: "Machine Learning",
     readTime: "30 min read",
+    blogUrl: "/blog/quantum-ml-financial-risk",
   },
   {
     type: "blog",
@@ -57,6 +60,7 @@ const resources = [
     description: "Why the near-term future of quantum computing lies in intelligent integration with classical systems.",
     category: "Machine Learning",
     readTime: "10 min read",
+    blogUrl: "/blog/hybrid-quantum-classical",
   },
 ];
 
