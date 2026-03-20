@@ -1,5 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { MapPin } from "lucide-react";
+import { MapPin, Linkedin } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const locations = [
   { city: "Atlanta, GA", country: "USA" },
@@ -45,9 +46,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-5 gap-12 mb-12">
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
-                <span className="text-secondary-foreground font-display font-bold text-sm">Q</span>
-              </div>
+              <img src={logo} alt="QuVision logo" className="w-8 h-8 object-contain" />
               <span className="font-display font-bold text-lg">
                 QuVision<span className="text-secondary">.tech</span>
               </span>
@@ -106,8 +105,17 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 pt-8 text-center text-sm text-primary-foreground/40">
-          © {new Date().getFullYear()} QuVision.tech — All rights reserved.
+        <div className="border-t border-primary-foreground/10 pt-8 flex items-center justify-between text-sm text-primary-foreground/40">
+          <span>© {new Date().getFullYear()} QuVision.tech — All rights reserved.</span>
+          <a
+            href="https://www.linkedin.com/company/quvision"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-foreground/40 hover:text-secondary transition-colors"
+            aria-label="QuVision on LinkedIn"
+          >
+            <Linkedin className="w-5 h-5" />
+          </a>
         </div>
       </div>
     </footer>
