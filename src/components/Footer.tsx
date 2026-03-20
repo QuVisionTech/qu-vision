@@ -105,8 +105,17 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 pt-8 text-center text-sm text-primary-foreground/40">
-          © {new Date().getFullYear()} QuVision.tech — All rights reserved.
+        <div className="border-t border-primary-foreground/10 pt-8 flex items-center justify-between text-sm text-primary-foreground/40">
+          <span>© {new Date().getFullYear()} QuVision.tech — All rights reserved.</span>
+          <a
+            href="https://www.linkedin.com/company/quvision"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-foreground/40 hover:text-secondary transition-colors"
+            aria-label="QuVision on LinkedIn"
+          >
+            <Linkedin className="w-5 h-5" />
+          </a>
         </div>
       </div>
     </footer>
