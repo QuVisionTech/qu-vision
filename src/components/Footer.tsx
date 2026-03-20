@@ -1,3 +1,4 @@
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { MapPin } from "lucide-react";
 
 const locations = [
@@ -17,10 +18,25 @@ const legalLinks = [
 ];
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const openCookiePreferences = () => {
     localStorage.removeItem("cookie-consent");
     window.dispatchEvent(new Event("open-cookie-preferences"));
     window.location.reload();
+  };
+
+  const handleHashClick = (href: string) => {
+    if (href.startsWith("/#")) {
+      const hash = href.substring(1);
+      if (location.pathname === "/") {
+        const el = document.querySelector(hash);
+        el?.scrollIntoView({ behavior: "smooth" });
+      } else {
+        navigate("/" + hash);
+      }
+    }
   };
 
   return (
@@ -28,14 +44,14 @@ const Footer = () => {
       <div className="container max-w-6xl">
         <div className="grid md:grid-cols-5 gap-12 mb-12">
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
+            <Link to="/" className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
                 <span className="text-secondary-foreground font-display font-bold text-sm">Q</span>
               </div>
               <span className="font-display font-bold text-lg">
                 QuVision<span className="text-secondary">.tech</span>
               </span>
-            </div>
+            </Link>
             <p className="text-primary-foreground/60 text-sm leading-relaxed">
               Technology Solutions for Quantum Computing. Engineering the quantum future for enterprises worldwide.
             </p>
@@ -44,19 +60,19 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold text-sm mb-4">Solutions</h4>
             <ul className="space-y-2.5 text-sm text-primary-foreground/60">
-              <li><a href="/#solutions" className="hover:text-secondary transition-colors">Quantum Cryptography</a></li>
-              <li><a href="/#solutions" className="hover:text-secondary transition-colors">Error Correction</a></li>
-              <li><a href="/#solutions" className="hover:text-secondary transition-colors">Quantum ML</a></li>
+              <li><button onClick={() => handleHashClick("/#solutions")} className="hover:text-secondary transition-colors">Quantum Cryptography</button></li>
+              <li><button onClick={() => handleHashClick("/#solutions")} className="hover:text-secondary transition-colors">Error Correction</button></li>
+              <li><button onClick={() => handleHashClick("/#solutions")} className="hover:text-secondary transition-colors">Quantum ML</button></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-display font-semibold text-sm mb-4">Resources</h4>
             <ul className="space-y-2.5 text-sm text-primary-foreground/60">
-              <li><a href="/knowledge" className="hover:text-secondary transition-colors">Whitepapers</a></li>
-              <li><a href="/knowledge" className="hover:text-secondary transition-colors">Blog</a></li>
-              <li><a href="/team" className="hover:text-secondary transition-colors">Team</a></li>
-              <li><a href="/#contact" className="hover:text-secondary transition-colors">Contact</a></li>
+              <li><Link to="/knowledge" className="hover:text-secondary transition-colors">Whitepapers</Link></li>
+              <li><Link to="/knowledge" className="hover:text-secondary transition-colors">Blog</Link></li>
+              <li><Link to="/team" className="hover:text-secondary transition-colors">Team</Link></li>
+              <li><button onClick={() => handleHashClick("/#contact")} className="hover:text-secondary transition-colors">Contact</button></li>
             </ul>
           </div>
 
@@ -70,7 +86,7 @@ const Footer = () => {
                       {link.label}
                     </button>
                   ) : (
-                    <a href={link.href} className="hover:text-secondary transition-colors">{link.label}</a>
+                    <Link to={link.href} className="hover:text-secondary transition-colors">{link.label}</Link>
                   )}
                 </li>
               ))}
