@@ -46,9 +46,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-5 gap-12 mb-12">
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
-                <span className="text-secondary-foreground font-display font-bold text-sm">Q</span>
-              </div>
+              <img src={logo} alt="QuVision logo" className="w-8 h-8 object-contain" />
               <span className="font-display font-bold text-lg">
                 QuVision<span className="text-secondary">.tech</span>
               </span>
