@@ -26,7 +26,9 @@ const CookieConsent = () => {
       const timer = setTimeout(() => setVisible(true), 1500);
       return () => clearTimeout(timer);
     }
+  }, []);
 
+  useEffect(() => {
     const handleOpenPreferences = () => {
       setVisible(true);
       setShowPreferences(true);
