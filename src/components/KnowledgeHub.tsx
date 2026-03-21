@@ -4,6 +4,7 @@ import { FileText, BookOpen, ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fadeInUp } from "@/lib/animations";
 import DownloadFormDialog from "@/components/DownloadFormDialog";
+import { useToast } from "@/hooks/use-toast";
 
 const resources = [
   {
@@ -86,6 +87,7 @@ const KnowledgeHub = () => {
     title: "",
     downloadUrl: "",
   });
+  const { toast } = useToast();
 
   const filtered = activeTag === "All" ? resources : resources.filter((r) => r.tag === activeTag);
 
@@ -192,7 +194,7 @@ const KnowledgeHub = () => {
                   <Button
                     variant="ghost"
                     className="p-0 text-sm text-secondary hover:bg-transparent hover:gap-3 gap-2 transition-all"
-                    asChild
+                    onClick={() => toast({ title: "Article coming soon!", description: "This research article is currently in development." })}
                   >
                     <a href={resource.blogUrl}>
                       Read Article
