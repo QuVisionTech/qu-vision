@@ -26,6 +26,13 @@ const CookieConsent = () => {
       const timer = setTimeout(() => setVisible(true), 1500);
       return () => clearTimeout(timer);
     }
+
+    const handleOpenPreferences = () => {
+      setVisible(true);
+      setShowPreferences(true);
+    };
+    window.addEventListener("open-cookie-preferences", handleOpenPreferences);
+    return () => window.removeEventListener("open-cookie-preferences", handleOpenPreferences);
   }, []);
 
   const handleAccept = () => {

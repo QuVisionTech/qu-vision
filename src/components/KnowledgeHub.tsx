@@ -195,12 +195,12 @@ const KnowledgeHub = () => {
                   <Button
                     variant="ghost"
                     className="p-0 text-sm text-secondary hover:bg-transparent hover:gap-3 gap-2 transition-all"
-                    onClick={() => toast({ title: "Article coming soon!", description: "This research article is currently in development." })}
+                    asChild
                   >
-                    <a href={resource.blogUrl}>
+                    <Link to={resource.blogUrl}>
                       Read Article
                       <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
+                    </Link>
                   </Button>
                 )}
               </div>
