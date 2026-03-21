@@ -184,10 +184,10 @@ const KnowledgeHub = () => {
                       className="p-0 text-sm text-accent hover:bg-transparent hover:gap-3 gap-2 transition-all"
                       asChild
                     >
-                      <a href={resource.blogUrl}>
+                      <Link to={resource.blogUrl}>
                         Read Blog
                         <ArrowRight className="w-3.5 h-3.5" />
-                      </a>
+                      </Link>
                     </Button>
                   </>
                 )}
