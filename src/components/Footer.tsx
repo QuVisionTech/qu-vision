@@ -23,9 +23,7 @@ const Footer = () => {
   const location = useLocation();
 
   const openCookiePreferences = () => {
-    localStorage.removeItem("cookie-consent");
     window.dispatchEvent(new Event("open-cookie-preferences"));
-    window.location.reload();
   };
 
   const handleHashClick = (href: string) => {

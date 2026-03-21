@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FileText, BookOpen, ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -183,10 +184,10 @@ const KnowledgeHub = () => {
                       className="p-0 text-sm text-accent hover:bg-transparent hover:gap-3 gap-2 transition-all"
                       asChild
                     >
-                      <a href={resource.blogUrl}>
+                      <Link to={resource.blogUrl}>
                         Read Blog
                         <ArrowRight className="w-3.5 h-3.5" />
-                      </a>
+                      </Link>
                     </Button>
                   </>
                 )}
@@ -194,12 +195,12 @@ const KnowledgeHub = () => {
                   <Button
                     variant="ghost"
                     className="p-0 text-sm text-secondary hover:bg-transparent hover:gap-3 gap-2 transition-all"
-                    onClick={() => toast({ title: "Article coming soon!", description: "This research article is currently in development." })}
+                    asChild
                   >
-                    <a href={resource.blogUrl}>
+                    <Link to={resource.blogUrl}>
                       Read Article
                       <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
+                    </Link>
                   </Button>
                 )}
               </div>
